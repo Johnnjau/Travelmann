@@ -2,8 +2,11 @@ import express from "express";
 import { readdirSync } from "fs";
 import cors from "cors";
 import mongoose from "mongoose";
-const morgan = require("morgan");
-require('dotenv').config();
+import morgan from "morgan";  // Use ES6 import for morgan as well
+import dotenv from "dotenv";  // Use ES6 import for dotenv
+
+dotenv.config();  // Load environment variables
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
 const app = express();
 
@@ -29,3 +32,4 @@ readdirSync("./routes").map((r) => app.use("/api", require(`./routes/${r}`)));
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
+
